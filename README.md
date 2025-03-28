@@ -105,3 +105,16 @@ export default [
     },
   },
 ];
+
+## Criando pastas
+
+Criando uma pasta chamada .VSCODE na raiz do projeto com um arquivo settings.json:
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+}
+
+## Adicionando script
+
+Colocando script para formatar todo o codigo de uma vez.
+### `"format": "prettier --write src/"`
