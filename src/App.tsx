@@ -1,10 +1,15 @@
 import React from 'react'
+import EstiloGlobal, { Container } from './styles'
+import ListaContato from './containers/ListaContato'
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello Word!!</h1>
-    </div>
+    <>
+      <EstiloGlobal />
+      <Container>
+        <ListaContato />
+      </Container>
+    </>
   )
 }
 
