@@ -1,8 +1,9 @@
 import Contato from "../../components/Lista";
+import { Titulo } from "../../styles";
 
 const ListaContato = () => (
   <div>
-    <h1>Seus Contatos</h1>
+    <Titulo>Meus Contatos</Titulo>
     <div>
       <Contato />
     </div>

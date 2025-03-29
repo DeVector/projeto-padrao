@@ -14,4 +14,9 @@ export const Container = styled.div`
   grid-template-columns: 224px auto;
 `
 
+export const Titulo = styled.h1`
+  font-weight: bold;
+  text-align: center;
+`
+
 export default EstiloGlobal;
