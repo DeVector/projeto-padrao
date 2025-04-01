@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Contato from "../../models/Contato"
 
 type ContatoState = {
@@ -43,7 +43,14 @@ const initialState: ContatoState = {
 const contatoSlice = createSlice({
   name: 'contatos',
   initialState,
-  reducers:{}
+  reducers:{
+    remover: (state, action: PayloadAction<number>) => {
+      state.itens = state.itens.filter(
+        (contato) => contato.id !== action.payload
+      )
+    },
+    
+  }
 })
 
 export default contatoSlice.reducer;
