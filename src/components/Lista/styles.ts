@@ -1,4 +1,3 @@
-import { IMaskInput } from "react-imask";
 import styled from "styled-components";
 
 
@@ -24,13 +23,6 @@ export const Button = styled.button`
 `
 
 export const EditArea = styled.input`
-  width: 100%;
-  padding: 8px;
-  border-radius: 8px;
-  border-style: none;
-`
-
-export const MaskedInput = styled(IMaskInput)`
   width: 100%;
   padding: 8px;
   border-radius: 8px;

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { IMaskInput } from 'react-imask';
 
 import { editar, remover } from '../../store/reducers/contatos';
 
@@ -12,6 +11,7 @@ import CloseIcon from '../../utils/img/close-icon.png';
 import contatoClass from '../../models/Contato';
 
 import * as S from './styles'
+import { MaskedInput } from '../../styles';
 
 type Props = contatoClass;
 
@@ -58,7 +58,7 @@ const Contato = ({
       </td>
       <td>
         {estaEditando ? (
-          <S.MaskedInput
+          <MaskedInput
             mask="(00) 0 0000-0000"
             value={telefone}
             onAccept={(value) => setTelefone(value)}
