@@ -1,3 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { IMaskInput } from 'react-imask';
+
+import { editar, remover } from '../../store/reducers/contatos';
+
 import EditIcon from '../../utils/img/edit-icon.png';
 import DeleteIcon from '../../utils/img/trash-icon.png';
 import CheckIcon from '../../utils/img/check-button-icon.png';
@@ -5,8 +12,6 @@ import CloseIcon from '../../utils/img/close-icon.png';
 import contatoClass from '../../models/Contato';
 
 import * as S from './styles'
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 type Props = contatoClass;
 
@@ -19,7 +24,7 @@ const Contato = ({
 
   const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
-  const [telefone, setTelefone] = useState<string>('')
+  const [telefone, setTelefone] = useState('')
   const [email, setEmail] = useState('')
 
   useEffect(() => {
@@ -30,6 +35,12 @@ const Contato = ({
       setTelefone(telefoneOriginal)
     }
   }, [emailOriginal, telefoneOriginal])
+
+  function cancelarEdicao() {
+    setEstaEditando(false)
+    setEmail(emailOriginal)
+    setTelefone(telefoneOriginal)
+  }
 
   return (
     <S.Linha estaEditando={estaEditando}>
@@ -47,24 +58,47 @@ const Contato = ({
       </td>
       <td>
         {estaEditando ? (
-            <S.EditArea
-              type='tel'
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-            />
+          <S.MaskedInput
+            mask="(00) 0 0000-0000"
+            value={telefone}
+            onAccept={(value) => setTelefone(value)}
+            unmask={false} // Mantém a máscara no valor
+          />
           ) : (
             telefone
           )}
       </td>
       <td>
         <div>
-
-          <S.Button>
-            <S.Imagen src={estaEditando ? CheckIcon : EditIcon} />
-          </S.Button>
-          <S.Button>
-            <S.Imagen src={estaEditando ? CloseIcon : DeleteIcon} />
-          </S.Button>
+          {estaEditando ? (
+            <>
+              <S.Button onClick={ () => {
+                dispatch(
+                  editar({
+                    nome,
+                    email,
+                    telefone,
+                    id
+                  })
+                )
+                setEstaEditando(false)
+              }}>
+                <S.Imagen src={CheckIcon}/>
+              </S.Button>
+              <S.Button onClick={cancelarEdicao}>
+                <S.Imagen src={CloseIcon} />
+              </S.Button>
+            </>
+          ) : (
+            <>
+              <S.Button onClick={() => setEstaEditando(true)}>
+                <S.Imagen src={EditIcon}/>
+              </S.Button>
+              <S.Button onClick={() => dispatch(remover(id))}>
+                <S.Imagen src={DeleteIcon}/>
+              </S.Button>
+            </>
+          ) }
         </div>
       </td>
     </S.Linha>

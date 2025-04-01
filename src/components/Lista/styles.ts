@@ -1,9 +1,10 @@
+import { IMaskInput } from "react-imask";
 import styled from "styled-components";
 
 
 export const Linha = styled.tr<{ estaEditando: boolean }>`
   background-color: ${(props) =>
-    props.estaEditando ? '#ffff99' : 'transparent'}; /* Amarelo quando editando */
+    props.estaEditando ? '#ffff99 !important' : 'transparent'};
 `
 
 export const Imagen = styled.img `
@@ -24,5 +25,14 @@ export const Button = styled.button`
 
 export const EditArea = styled.input`
   width: 100%;
-  padding: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  border-style: none;
+`
+
+export const MaskedInput = styled(IMaskInput)`
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border-style: none;
 `

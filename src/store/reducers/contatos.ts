@@ -77,4 +77,6 @@ const contatoSlice = createSlice({
   }
 })
 
+export const { remover, editar, cadastrar } = contatoSlice.actions;
+
 export default contatoSlice.reducer;
